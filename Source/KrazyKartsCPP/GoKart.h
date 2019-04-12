@@ -50,6 +50,13 @@ private:
 	float RollingResistanceCoefficient = 0.015f;
 
 	FVector Velocity;
+
+	UPROPERTY(Replicated)
+	FVector ReplicatedLocation;
+
+	UPROPERTY(Replicated)
+	FRotator ReplicatedRotation;
+
 	float SteeringThrow;
 
 	void MoveForward(float Value);
