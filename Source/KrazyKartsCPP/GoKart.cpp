@@ -20,6 +20,20 @@ void AGoKart::BeginPlay()
 }
 
 
+void AGoKart::UpdateLocationFromVelocity(float DeltaTime)
+{
+	FVector Translation = Velocity * DeltaTime * 100;
+
+	FHitResult Hit;
+
+	AddActorWorldOffset(Translation, true, &Hit);
+
+	if(Hit.IsValidBlockingHit())
+	{
+		Velocity = FVector::ZeroVector;
+	}
+}
+
 // Called every frame
 void AGoKart::Tick(float DeltaTime)
 {
@@ -30,9 +44,7 @@ void AGoKart::Tick(float DeltaTime)
 
 	Velocity = Velocity + Acceleration * DeltaTime;
 
-	FVector Translation = Velocity * DeltaTime * 100;
-
-	AddActorWorldOffset(Translation);
+	UpdateLocationFromVelocity(DeltaTime);
 }
 
 // Called to bind functionality to input
