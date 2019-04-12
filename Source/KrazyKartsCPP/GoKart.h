@@ -20,7 +20,9 @@ protected:
 	virtual void BeginPlay() override;
 	void UpdateLocationFromVelocity(float DeltaTime);
 	void ApplyRotation(float DeltaTime);
-	FVector GetResistance();
+	FVector GetAirResistance();
+
+	FVector GetRollingResistance();
 
 public:	
 	// Called every frame
@@ -43,6 +45,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DragCoefficient = 16.0f;
+
+	UPROPERTY(EditAnywhere)
+	float RollingResistanceCoefficient = 0.015f;
 
 	FVector Velocity;
 	float SteeringThrow;
