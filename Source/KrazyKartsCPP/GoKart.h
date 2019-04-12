@@ -19,6 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void UpdateLocationFromVelocity(float DeltaTime);
+	void ApplyRotation(float DeltaTime);
 
 public:	
 	// Called every frame
@@ -36,9 +37,14 @@ private:
 	UPROPERTY(EditAnywhere)
 	float MaxDrivingForce = 10000.0f;
 
+	UPROPERTY(EditAnywhere)
+	float MaxDegreesPerSecondRot = 90.0f;
+
 	FVector Velocity;
+	float SteeringThrow;
 
 	void MoveForward(float Value);
+	void MoveRight(float Value);
 
 	float Throttle;
 };
