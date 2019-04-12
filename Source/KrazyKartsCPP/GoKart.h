@@ -41,7 +41,7 @@ private:
 	float MaxDrivingForce = 10000.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MaxDegreesPerSecondRot = 90.0f;
+	float MinTurningRadius = 10.0f;
 
 	UPROPERTY(EditAnywhere)
 	float DragCoefficient = 16.0f;
@@ -52,8 +52,11 @@ private:
 	FVector Velocity;
 	float SteeringThrow;
 
-	void MoveForward(float Value);
-	void MoveRight(float Value);
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_MoveForward(float Value);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_MoveRight(float Value);
 
 	float Throttle;
 };
