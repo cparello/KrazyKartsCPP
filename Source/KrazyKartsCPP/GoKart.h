@@ -20,6 +20,7 @@ protected:
 	virtual void BeginPlay() override;
 	void UpdateLocationFromVelocity(float DeltaTime);
 	void ApplyRotation(float DeltaTime);
+	FVector GetResistance();
 
 public:	
 	// Called every frame
@@ -39,6 +40,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float MaxDegreesPerSecondRot = 90.0f;
+
+	UPROPERTY(EditAnywhere)
+	float DragCoefficient = 16.0f;
 
 	FVector Velocity;
 	float SteeringThrow;
