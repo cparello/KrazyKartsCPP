@@ -37,7 +37,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
+	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -57,4 +58,6 @@ private:
 
 	UPROPERTY()
 	UGoKartMovementComponent* MovementComponent;
+
+	void UpdateServerState(const FGoKartMove& Move);
 };

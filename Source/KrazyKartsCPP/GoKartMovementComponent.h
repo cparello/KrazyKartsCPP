@@ -38,25 +38,22 @@ protected:
 
 public:	
 	// Called every frame
-// 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-
-public:
-	// Called every frame
-// 	virtual void Tick(float DeltaTime) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void SimulateMove(const FGoKartMove& Move);
 
-	FGoKartMove CreateMove(float DeltaTime);
 
 	FVector GetVelocity() { return Velocity; };
 	void SetVelocity(FVector Value) { Velocity = Value; };
 	void SetSteeringThrow(float Value) { SteeringThrow = Value; };
 	void SetThrottle(float Value) { Throttle = Value; };
 
+	FGoKartMove GetLastMove() { return LastMove; };
+
 
 private:
 
+	FGoKartMove CreateMove(float DeltaTime);
 
 	void UpdateLocationFromVelocity(float DeltaTime);
 	void ApplyRotation(float DeltaTime, float SteeringThrow);
@@ -86,6 +83,6 @@ private:
 	float Throttle;
 
 
-		
+	FGoKartMove LastMove;
 	
 };
