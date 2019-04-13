@@ -52,7 +52,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void UpdateLocationFromVelocity(float DeltaTime);
-	void ApplyRotation(float DeltaTime);
+	void ApplyRotation(float DeltaTime, float SteeringThrow);
 	FVector GetAirResistance();
 
 	FVector GetRollingResistance();
@@ -66,6 +66,9 @@ public:
 
 	
 private:
+	void SimulateMove(FGoKartMove Move);
+
+
 	//mass of the car in KG
 	UPROPERTY(EditAnywhere)
 	float Mass = 1000.0f;
@@ -90,7 +93,6 @@ private:
 	UFUNCTION()
 	void OnRep_ServerState();
 
-	UPROPERTY(Replicated)
 	float SteeringThrow;
 
 	void MoveForward(float Value);
@@ -99,6 +101,5 @@ private:
 	UFUNCTION(Server, Reliable, WithValidation)
 	void Server_SendMove(FGoKartMove Move);
 
-	UPROPERTY(Replicated)
 	float Throttle;
 };
