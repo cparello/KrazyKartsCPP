@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "GoKart.generated.h"
 
+
 USTRUCT()
 struct FGoKartMove
 {
@@ -66,8 +67,11 @@ public:
 
 	
 private:
-	void SimulateMove(FGoKartMove Move);
+	void SimulateMove(const FGoKartMove& Move);
 
+	FGoKartMove CreateMove(float DeltaTime);
+
+	void ClearAcknowledgedMoves(FGoKartMove LastMove);
 
 	//mass of the car in KG
 	UPROPERTY(EditAnywhere)
@@ -102,4 +106,6 @@ private:
 	void Server_SendMove(FGoKartMove Move);
 
 	float Throttle;
+
+	TArray<FGoKartMove> UnacknowledgedMoves;
 };
