@@ -72,5 +72,6 @@ private:
 
 	void UpdateServerState(const FGoKartMove& Move);
 
+	FVector ClientStartVelocity;
 
 };
