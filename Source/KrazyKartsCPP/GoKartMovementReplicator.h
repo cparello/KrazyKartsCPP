@@ -43,6 +43,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
+	void ClientTick(float DeltaTime);
+
 	void ClearAcknowledgedMoves(FGoKartMove LastMove);
 
 	UPROPERTY(ReplicatedUsing = OnRep_ServerState)
@@ -50,14 +52,25 @@ private:
 
 	UFUNCTION()
 	void OnRep_ServerState();
+	void SimulatedProxy_OnRep_ServerState();
+	void AutonomousProxy_OnRep_ServerState();
+
 
 	UFUNCTION(Server, Reliable, WithValidation)
 	void Server_SendMove(FGoKartMove Move);
 
 	TArray<FGoKartMove> UnacknowledgedMoves;
 
+	float ClientTimeSinceUpdate;
+	float ClientTimeBetweenLastUpdate;
+	FTransform ClientStartTransform;
+
+
+
 	UPROPERTY()
 	UGoKartMovementComponent* MovementComponent;
 
 	void UpdateServerState(const FGoKartMove& Move);
+
+
 };
