@@ -95,4 +95,9 @@ private:
 
 	FVector ClientStartVelocity;
 
+	UPROPERTY()
+	USceneComponent* MeshOffsetRoot;
+
+	UFUNCTION(BlueprintCallable)
+	void SetMeshOffsetRoot(USceneComponent* Root) { MeshOffsetRoot = Root; };;
 };
